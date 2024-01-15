@@ -1,0 +1,53 @@
+{{template "header.html" .}}
+
+{{template "top_nav.html" .}}
+
+
+{{template "side_nav.html" .}}
+
+  {{template "content_header.html" .}}
+  <section id="configuration">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{.TableName}}</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <button type="button" class="btn btn-primary btn-block"><i class="fa {{.AddButtonIcon}}"></i> | {{.AddButton}}</button>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body card-dashboard">
+                        <table class="table table-striped table-bordered zero-configuration">
+                            <thead>
+                                <tr>
+                                    {{range .TableHeaders}}
+                                    <th>{{.}}</th>
+                                    {{end}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{range .TableData}}
+                                <tr>
+                                    <td>{{.Name}}</td>
+                                    <td>{{.Position}}</td>
+                                    <td>{{.Office}}</td>
+                                    <td>{{.Age}}</td>
+                                    <td>{{.StartDate}}</td>
+                                    <td>{{.Salary}}</td>
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{{template "footer.html" . }}
