@@ -1,65 +1,45 @@
 
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Applicants List</h4>
-                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="collapse"><i class="ft-external-link"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-content">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>Invoice#</th>
-                                <th>Customer Name</th>
-                                <th>Status</th>
-                                <th>Due</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-truncate"><a href="#">INV-001001</a></td>
-                                <td class="text-truncate">Elizabeth W.</td>
-                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
-                                <td class="text-truncate">10/05/2016</td>
-                                <td class="text-truncate">$ 1200.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-truncate"><a href="#">INV-001012</a></td>
-                                <td class="text-truncate">Andrew D.</td>
-                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
-                                <td class="text-truncate">20/07/2016</td>
-                                <td class="text-truncate">$ 152.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-truncate"><a href="#">INV-001401</a></td>
-                                <td class="text-truncate">Megan S.</td>
-                                <td class="text-truncate"><span class="tag tag-default tag-success">Paid</span></td>
-                                <td class="text-truncate">16/11/2016</td>
-                                <td class="text-truncate">$ 1450.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-truncate"><a href="#">INV-01112</a></td>
-                                <td class="text-truncate">Doris R.</td>
-                                <td class="text-truncate"><span class="tag tag-default tag-warning">Overdue</span></td>
-                                <td class="text-truncate">11/12/2016</td>
-                                <td class="text-truncate">$ 5685.00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-truncate"><a href="#">INV-008101</a></td>
-                                <td class="text-truncate">Walter R.</td>
-                                <td class="text-truncate"><span class="tag tag-default tag-warning">Overdue</span></td>
-                                <td class="text-truncate">18/05/2016</td>
-                                <td class="text-truncate">$ 685.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-<!-- Recent invoice with Statistics -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Applicants List</h4>
+                                <a class="heading-elements-toggle"><i class="ft-more-horizontal font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-external-link"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{range $index, $applicant := .Applicants}}
+                                                <tr>
+                                                    <td class="text-truncate">{{$applicant.Name}}</td>
+                                                    <td class="text-truncate">{{$applicant.Email}}</td>
+                                                    <td class="text-truncate">{{$applicant.Phone}}</td>
+                                                    {{if eq $applicant.Status 1}}
+                                                    <td><button class="btn btn-warning">Pending</button></td>
+                                                    {{else if eq $applicant.Status 2}}
+                                                    <td><button class="btn btn-primary">Scheduled</button></td>
+                                                    {{else if eq $applicant.Status 3}}
+                                                    <td><button class="btn btn-success">Finished</button></td>
+                                                    {{else}}
+                                                    <td><button class="btn btn-danger">Rejected</button></td>
+                                                    {{end}}
+                                                </tr>
+                                            {{end}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                <!-- Recent invoice with Statistics -->
