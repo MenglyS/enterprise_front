@@ -14,15 +14,7 @@
 	            	<h4 class="card-title">All Users</h4>
 		            <a class="heading-elements-toggle"><i class="ft-ellipsis-h font-medium-3"></i></a>
         			<div class="heading-elements">
-		                <button class="btn btn-primary btn-sm"><i class="ft-plus white"></i> Add User</button>
-            			<span class="dropdown">
-	                        <button id="btnSearchDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-warning dropdown-toggle dropdown-menu-right btn-sm"><i class="ft-download-cloud white"></i></button>
-	                        <span aria-labelledby="btnSearchDrop1" class="dropdown-menu mt-1 dropdown-menu-right">
-	                            <a href="#" class="dropdown-item"><i class="ft-upload"></i> Import</a>
-	                            <a href="#" class="dropdown-item"><i class="ft-download"></i> Export</a>
-	                            <a href="#" class="dropdown-item"><i class="ft-shuffle"></i> Find Duplicate</a>
-	                        </span>
-	                    </span>
+		                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#large"><i class="ft-plus white"></i> Add User</button>
 		            </div>
 	            </div>
 	        </div>
@@ -58,24 +50,19 @@
 					                </td>
 					                <td>{{.Phone}}</td>
 					                <td class="text-center">{{.PositionId}}</i></td>
-									<td class="text-center">{{.RoleId}}</i></td>
+                                    {{if eq .RoleId 1}}
+                                    <td class="text-center"><button class="btn btn-primary text-center">Admin</button></td>
+                                    {{else}}
+                                    <td class="text-center"><button class="btn btn-secondary text-center">Employee</button></td>
+                                    {{end}}
 									{{if eq .Status 1}}
 									<td class="text-center"><button class="btn btn-success">Active</button></td>
 									{{else}}
 									<td class="text-center"><button class="btn btn-secondary">Closed</button></td>
 									{{end}}
 					                <td>
-					                	<span class="dropdown">
-					                        <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-primary dropdown-toggle dropdown-menu-right"><i class="ft-settings"></i></button>
-					                        <span aria-labelledby="btnSearchDrop2" class="dropdown-menu mt-1 dropdown-menu-right">
-					                            <a href="#" class="dropdown-item"><i class="ft-edit-2"></i> Edit</a>
-					                            <a href="#" class="dropdown-item"><i class="ft-trash-2"></i> Delete</a>
-					                            <a href="#" class="dropdown-item"><i class="ft-plus-circle primary"></i> Projects</a>
-					                            <a href="#" class="dropdown-item"><i class="ft-plus-circle info"></i> Team</a>
-					                            <a href="#" class="dropdown-item"><i class="ft-plus-circle warning"></i> Clients</a>
-					                            <a href="#" class="dropdown-item"><i class="ft-plus-circle success"></i> Friends</a>
-					                        </span>
-					                    </span>
+					                    <button type="button" class="btn btn-primary">Edit</button>
+										<button type="button" class="btn btn-danger">Delete</button>
 					                </td>
 					            </tr>
 								{{end}}
@@ -86,6 +73,51 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel17">User</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="user/create" method="POST" enctype="multipart/form-data" >
+                <div class="form-group m-5">
+                    <h3>Username</h3>
+                    <input type="text" name="username" class="form-control" placeholder="Username">
+                    <h3 class="mt-2">Email</h3>
+                    <input type="text" name="email" class="form-control" placeholder="Email">
+					<h3 class="mt-2">Date of Birth</h3>
+                    <input type="date" name="dob" class="form-control" placeholder="Email">
+                    <h3 class="mt-2">Role</h3>
+                    <select class="form-control" name="role" id="">
+						<option value="1">Admin</option>
+						<option value="2">Employee</option>
+					</select>
+					<h3 class="mt-2">Position</h3>
+                    <select class="form-control" name="position" id="">
+						<option value="1">Test 1</option>
+						<option value="2">Test 2</option>
+					</select>
+					<h3 class="mt-2">Phone Number</h3>
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+                    <h3 class="mt-2">Salary</h3>
+                    <input type="number" name="salary" class="form-control" placeholder="salary">
+                    <h3 class="mt-2">Profile</h3>
+                    <input type="file" name="img" class="form-control" placeholder="Contact">
+					<h3 class="mt-2">Password</h3>
+					<input type="password" name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Save changes</button>
+                  </div>
+              </div>
+            </form>
+        </div>
+      </div>
 </section>
 
 

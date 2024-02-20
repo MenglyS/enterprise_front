@@ -16,7 +16,7 @@
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
-                                                <th>Phone</th>
+                                                <th>Job Title</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -25,13 +25,13 @@
                                                 <tr>
                                                     <td class="text-truncate">{{$applicant.Name}}</td>
                                                     <td class="text-truncate">{{$applicant.Email}}</td>
-                                                    <td class="text-truncate">{{$applicant.Phone}}</td>
+                                                    <td class="text-truncate">{{$applicant.Job.Title}}</td>
                                                     {{if eq $applicant.Status 1}}
                                                     <td><button class="btn btn-warning">Pending</button></td>
                                                     {{else if eq $applicant.Status 2}}
                                                     <td><button class="btn btn-primary">Scheduled</button></td>
                                                     {{else if eq $applicant.Status 3}}
-                                                    <td><button class="btn btn-success">Finished</button></td>
+                                                    <td><button class="btn btn-success">Approved</button></td>
                                                     {{else}}
                                                     <td><button class="btn btn-danger">Rejected</button></td>
                                                     {{end}}

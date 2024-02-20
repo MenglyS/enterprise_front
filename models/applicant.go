@@ -14,6 +14,7 @@ type Applicant struct {
 	Experience    *string
 	Education     *string
 	Summary       *string
+	Job           Job
 	JobId         int
 	CvFile        *string
 	ApprovedBy    int

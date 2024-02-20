@@ -1,3 +1,3 @@
 package config
 
-var Api = "http://127.0.0.1:8080/api/v1/"
+var Api = "http://128.199.112.71:8080/api/v1/"

@@ -13,11 +13,6 @@
                 <div class="card-header">
                     <h4 class="card-title">{{.TableName}}</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <button type="button" class="btn btn-primary btn-block"><i class="fa {{.AddButtonIcon}}"></i> | {{.AddButton}}</button>
-                        </ul>
-                    </div>
                 </div>
                 <div class="card-content collapse show">
                     <div class="card-body card-dashboard">
@@ -33,12 +28,52 @@
                                 {{range .TableData}}
                                 <tr>
                                     <td>{{.Name}}</td>
-                                    <td>{{.Position}}</td>
-                                    <td>{{.Office}}</td>
-                                    <td>{{.Age}}</td>
-                                    <td>{{.StartDate}}</td>
-                                    <td>{{.Salary}}</td>
+                                    <td>{{.Email}}</td>
+                                    <td>{{.Address}}</td>
+                                    <td>{{.CvFile}}</td>
+                                    <td>{{.Job.Title}}</td>
+                                    {{if eq .Status 1}}
+                                    <td><button class="btn btn-warning">Pending</button></td>
+                                    {{else if eq .Status 2}}
+                                    <td><button class="btn btn-primary">Scheduled</button></td>
+                                    {{else if eq .Status 3}}
+                                    <td><button class="btn btn-success">Approved</button></td>
+                                    {{else}}
+                                    <td><button class="btn btn-danger">Rejected</button></td>
+                                    {{end}}
+					                <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#large{{.ApplicantId}}">
+                                            Edit
+                                        </button>
+										<button type="button" class="btn btn-danger">Delete</button>
+					                </td>
                                 </tr>
+                                <div class="modal fade text-left" id="large{{.ApplicantId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h4 class="modal-title" id="myModalLabel17">Applicant</h4>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <form action="applicant/edit/{{.ApplicantId}}" method="POST">
+                                            <div class="form-group m-5">
+                                                <h3>Status</h3>
+                                                <select name="Status" class="form-control">
+                                                        <option value="0">Reject</option>
+                                                        <option value="2">Schedule</option>
+                                                        <option value="3">Approve</option>
+                                                </select>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-outline-primary">Save changes</button>
+                                              </div>
+                                          </div>
+                                        </form>
+                                    </div>
+                                  </div>
                                 {{end}}
                             </tbody>
                         </table>

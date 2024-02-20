@@ -16,15 +16,15 @@
                         <img src="assets/image/login-banner.jpg" width="100%" alt="">
                     </div> -->
                     <div class="card-body">
-                        <form class="form-horizontal" action="/" novalidate>
+                        <form method="POST" class="form-horizontal" action="/login/submit" novalidate>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="text" class="form-control" id="user-name" placeholder="Your Username" required>
+                                <input type="text" name="email" class="form-control" id="user-name" placeholder="Your Email" required>
                                 <div class="form-control-position">
                                     <i class="ft-user"></i>
                                 </div>
                             </fieldset>
                             <fieldset class="form-group position-relative has-icon-left">
-                                <input type="password" class="form-control" id="user-password" placeholder="Enter Password" required>
+                                <input type="password" name="password" class="form-control" id="user-password" placeholder="Enter Password" required>
                                 <div class="form-control-position">
                                     <i class="fa fa-key"></i>
                                 </div>

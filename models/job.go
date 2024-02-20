@@ -5,7 +5,7 @@ import "time"
 type Job struct {
 	JobId             uint `gorm:"primary_key"`
 	Title             string
-	CategoryIds       string
+	CategoryIds       int
 	Description       string
 	Contact           string
 	ExpiryDate        string

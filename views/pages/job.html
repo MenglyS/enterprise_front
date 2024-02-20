@@ -15,7 +15,7 @@
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                            <button type="button" class="btn btn-primary btn-block"><i class="fa {{.AddButtonIcon}}"></i> | {{.AddButton}}</button>
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#large"><i class="fa {{.AddButtonIcon}}"></i> | {{.AddButton}}</button>
                         </ul>
                     </div>
                 </div>
@@ -32,12 +32,18 @@
                             <tbody>
                                 {{range .TableData}}
                                 <tr>
-                                    <td>{{.Name}}</td>
-                                    <td>{{.Position}}</td>
-                                    <td>{{.Office}}</td>
-                                    <td>{{.Age}}</td>
-                                    <td>{{.StartDate}}</td>
-                                    <td>{{.Salary}}</td>
+                                    <td>{{.Title}}</td>
+                                    <td>{{.CategoryIds}}</td>
+                                    <td><a class="btn btn-primary" href="https://enterprise-class.sgp1.digitaloceanspaces.com/{{.AnnouncementImage}}" target="_blank">View</a></td>
+                                    {{if eq .Status 1}}
+                                    <td><button class="btn btn-success">Active</button></td>
+                                    {{else}}
+                                    <td><button class="btn btn-danger">In-Active</button></td>
+                                    {{end}}
+					                <td>
+					                    <button type="button" class="btn btn-primary">Edit</button>
+										<button type="button" class="btn btn-danger">Delete</button>
+					                </td>
                                 </tr>
                                 {{end}}
                             </tbody>
@@ -47,6 +53,39 @@
             </div>
         </div>
     </div>
+    <div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel17">Job</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="job/create" method="POST" enctype="multipart/form-data" >
+                <div class="form-group m-5">
+                    <h3>Title</h3>
+                    <input type="text" name="title" class="form-control" placeholder="Title">
+                    <h3 class="mt-2">Category Id</h3>
+                    <input type="text" name="cat" class="form-control" placeholder="Category Id">
+                    <h3 class="mt-2">Description</h3>
+                    <textarea name="des" class="w-100" name="" id="" cols="30" rows="10"></textarea>
+                    <h3 class="mt-2">Contact</h3>
+                    <input type="text" name="contact" class="form-control" placeholder="Contact">
+                    <h3 class="mt-2">Expiry Date</h3>
+                    <input type="date" name="exp-date" class="form-control" placeholder="Contact">
+                    <h3 class="mt-2">Announcement Image</h3>
+                    <input type="file" name="img" class="form-control" placeholder="Contact">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-primary">Save changes</button>
+                  </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    
 </section>
 
 
